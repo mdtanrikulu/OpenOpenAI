@@ -1,16 +1,16 @@
-import {
+import PrismaPKG, {
   type Assistant,
   type AssistantFile,
   type File,
   type Message,
   type MessageFile,
   type Prisma,
-  PrismaClient,
   type Run,
   type RunStep,
   type Thread
 } from '@prisma/client'
 
+const { PrismaClient } = PrismaPKG
 const prisma = new PrismaClient()
 
 export { prisma }
