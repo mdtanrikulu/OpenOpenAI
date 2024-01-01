@@ -11,7 +11,6 @@ import {
 
 import * as retrieval from './retrieval'
 import type { File } from './db'
-import './prisma-json-types.d.ts'
 
 export type OAITypeToPrismaType<T extends Record<string, unknown>> = Simplify<
   RequiredNonNullableObject<
