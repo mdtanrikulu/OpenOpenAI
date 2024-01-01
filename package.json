@@ -91,5 +91,8 @@
     "agi",
     "llms",
     "chatgpt"
-  ]
+  ],
+  "volta": {
+    "node": "18.18.2"
+  }
 }
