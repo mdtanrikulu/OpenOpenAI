@@ -1,5 +1,5 @@
 import { OpenAPIHono } from '@hono/zod-openapi'
-import { Prisma } from '@prisma/client'
+import PrismaPKG from '@prisma/client'
 import createHttpError from 'http-errors'
 
 import * as routes from '~/generated/oai-routes'
@@ -9,6 +9,7 @@ import { createThread } from '~/lib/create-thread'
 import { prisma } from '~/lib/db'
 import { getJobId, queue } from '~/lib/queue'
 
+const { Prisma } = PrismaPKG
 const app: OpenAPIHono = new OpenAPIHono()
 
 app.openapi(routes.listRuns, async (c) => {
