@@ -51,6 +51,8 @@ app.openapi(routes.createThreadAndRun, async (c) => {
       file_ids: assistant.file_ids,
       ...utils.convertOAIToPrisma(data),
       thread_id: thread.id,
+      model: assistant?.model || 'gpt-4-1106-preview',
+      instructions: assistant?.instructions || 'You are a helpful assistant.',
       status: 'queued' as const,
       expires_at: new Date(now + config.runs.maxRunTime)
     }
@@ -92,6 +94,8 @@ app.openapi(routes.createRun, async (c) => {
       file_ids: assistant.file_ids,
       ...utils.convertOAIToPrisma(body),
       thread_id,
+      model: assistant?.model || 'gpt-4-1106-preview',
+      instructions: assistant?.instructions || 'You are a helpful assistant.',
       status: 'queued' as const,
       expires_at: new Date(now + config.runs.maxRunTime)
     }
@@ -342,7 +346,7 @@ app.openapi(routes.cancelRun, async (c) => {
     )
   }
 
-  return c.jsonT(utils.convertPrismaToOAI(run))
+  return c.jsonT(utils.convertPrismaToOAI(run) as any)
 })
 
 export default app

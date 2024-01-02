@@ -1,5 +1,7 @@
 #!/bin/bash
 
+npx --yes prisma db push && true
+
 # start the REST API server in one shell
 npx --yes tsx dist/server &
 
