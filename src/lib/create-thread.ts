@@ -19,6 +19,8 @@ export async function createThread(params: CreateThreadParams) {
     data
   })
 
+  if (!data || !Object.keys(data).length) return { thread }
+
   const messages = await pMap(
     messageInputs,
     async (message) => {

@@ -223,13 +223,15 @@ export const worker = new Worker<JobData, JobResult>(
 
         // const isCodeInterpreterEnabled = run.tools?.some((tool) => tool.type === 'code_interpreter')
         const isRetrievalEnabled =
-          run.tools?.some((tool) => tool.type === 'retrieval') && files.length
+          run.tools?.some((tool) => tool.type === 'retrieval') && files?.length
 
         // TODO: custom code interpreter instructions
         const assistantSystemtMessage: Prompt.Msg = Msg.system(
           `${run.instructions ? `${run.instructions}\n\n` : ''}${
             isRetrievalEnabled
-              ? `You can use the "retrieval" tool to retrieve relevant context from the following attached files:\n${files
+              ? `You can use the "retrieval" tool to retrieve relevant context from the following attached files:\n${(
+                  files || []
+                )
                   .map((file) => '- ' + getNormalizedFileName(file))
                   .join(
                     '\n'
